@@ -1,0 +1,38 @@
+version: '3'
+services:
+  ldap:
+    image: ldap
+    container_name: ldap
+    build:
+      context: ldap
+    ports:
+      - '389:389'
+    environment:
+      LDAP_DOMAIN: "example.org"
+      LDAP_ADMIN_PASSWORD: "password"
+    networks:
+      - my_network
+  idp:
+    image: idp 
+    container_name: idp
+    build:
+      context: idp
+    ports:
+      - 443:443
+    networks:
+      my_network:
+        aliases:
+          - idp.example.org
+  sp:
+    image: sp
+    container_name: sp
+    build:
+      context: sp
+    ports:
+      - 10443:10443
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
