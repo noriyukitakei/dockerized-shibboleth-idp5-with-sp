@@ -1,4 +1,4 @@
-FROM noriyukitakei/dockerized-shibboleth-idp5:1.0.0
+FROM noriyukitakei/dockerized-shibboleth-idp5:1.1.0
 
 # SSHログインのパスワードを定義する。
 ENV SSH_PASSWD "root:Docker!"
