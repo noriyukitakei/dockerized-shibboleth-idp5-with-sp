@@ -6,6 +6,9 @@ if [ -e /tmp/certs/server.crt -a -e /tmp/certs/server.key ]; then
   mv -f /tmp/certs/server.key /etc/pki/tls/private/localhost.key
 fi
 
+# 証明書ファイルが無ければ生成する
+[ -x /usr/libexec/httpd-ssl-gencerts ] && /usr/libexec/httpd-ssl-gencerts
+
 # httpsの待受ポートを10443に変更する。
 sed -i -e 's/Listen 443 https/Listen 10443 https/g' /etc/httpd/conf.d/ssl.conf 
 sed -i -e 's/<VirtualHost _default_:443>/<VirtualHost _default_:10443>/g' /etc/httpd/conf.d/ssl.conf
