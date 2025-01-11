@@ -1,4 +1,4 @@
-FROM centos:centos7
+FROM rockylinux:9
 
 # Shibboleth IdPのメタデータ取得先のURLを定義する。
 ENV IDP_METADATA_URL=https://idp.example.org/idp/shibboleth
