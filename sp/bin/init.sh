@@ -23,5 +23,9 @@ chmod +x /etc/shibboleth/shibd-redhat
 echo "$SSH_PASSWD" | chpasswd
 /usr/sbin/sshd &
 
+# php-fpm を起動する。
+[ ! -d /run/php-fpm ] && mkdir /run/php-fpm
+/usr/sbin/php-fpm
+
 # Apacheを起動する。
 exec httpd -DFOREGROUND
